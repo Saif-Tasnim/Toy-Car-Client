@@ -1,4 +1,8 @@
 import React from 'react';
+import img1 from '../../assets/71iCICbcAPS._AC_SL1500_.jpg'
+import img2 from '../../assets/91aVOFkXTBL._AC_SL1500_.jpg'
+import img3 from '../../assets/autos-truck-toys-toy-cars.jpg'
+import img4 from '../../assets/images.jpeg';
 
 const Banner = () => {
     return (
