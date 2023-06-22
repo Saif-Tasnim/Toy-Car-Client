@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import img from '../../../src/assets/images.png'
 
+
 const NavigationPanel = () => {
+  
 
     const nonUserNav = <div className="flex flex-col gap-4 md:flex-row md:gap-6">
         <li> <Link> Home </Link> </li>

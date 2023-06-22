@@ -2,11 +2,11 @@ import React from 'react';
 import img1 from '../../assets/71iCICbcAPS._AC_SL1500_.jpg'
 import img2 from '../../assets/91aVOFkXTBL._AC_SL1500_.jpg'
 import img3 from '../../assets/autos-truck-toys-toy-cars.jpg'
-import img4 from '../../assets/images.jpeg';
+import img4 from '../../assets/Gallery Pic/police-car-team-bus-police-blue-light.jpg'
 
 const Banner = () => {
     return (
-        <div className='mt-9 h-[700px]'>
+        <div className='mt-9 h-[700px]' id='gallery mb-20'>
             <div className="carousel w-full h-3/5 border-4 md:w-[1150px] md:h-[600px] md:border-8 md:ml-16">
                 <div id="slide1" className="carousel-item relative w-full">
                     <img src={img1} className="w-full" />
