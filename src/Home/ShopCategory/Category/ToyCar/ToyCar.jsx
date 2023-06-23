@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const ToyCar = () => {
 
@@ -27,11 +29,17 @@ const ToyCar = () => {
                         <figure><img src={c.picture} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title"> {c.name} </h2>
-                            <p>Price : {c.price} </p>
-                            <p>Ratings : {c.rating} </p>
+                            <p className='mt-3'>Price : {c.price} </p>
+                          <div className='flex justify-between mt-2'>
+                          <Rating
+                                style={{ maxWidth: 120 }}
+                                value={c.rating}
+                                readOnly
+                            /> 
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">View Details Button</button>
+                                <button className="btn btn-primary">View Details </button>
                             </div>
+                          </div>
                         </div>
                     </div>
                 </>)
