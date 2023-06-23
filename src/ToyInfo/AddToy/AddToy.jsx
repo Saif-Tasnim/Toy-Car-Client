@@ -38,7 +38,6 @@ const AddToy = () => {
                     'success'
                 )
             })
-
     }
 
     return (

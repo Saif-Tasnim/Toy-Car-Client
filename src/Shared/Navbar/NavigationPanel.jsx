@@ -32,7 +32,7 @@ const NavigationPanel = () => {
         <li> <Link> Home </Link> </li>
         <li> <Link> Gallery </Link> </li>
         <li> <Link> Blogs </Link> </li>
-        <li> <Link> All Toys </Link> </li>
+        <li> <Link to='/allToys'> All Toys </Link> </li>
 
 
     </div>
@@ -41,7 +41,7 @@ const NavigationPanel = () => {
 
         <li> <Link to="/"> Home </Link> </li>
         <li> <Link> Blogs </Link> </li>
-        <li> <Link> All Toys </Link> </li>
+        <li> <Link to='/allToys'> All Toys </Link> </li>
         <li> <Link to='/addToy'> Add A Toy </Link> </li>
         <li> <Link> My Toys </Link> </li>
         <div className="tooltip" data-tip={user?.displayName}>
