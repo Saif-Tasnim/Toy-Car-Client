@@ -1,0 +1,44 @@
+[
+    {
+        "picture": "https://ibb.co/HtwDyRq",
+        "name": "Sports Car 1",
+        "price": "$19.99",
+        "rating": 4.5,
+        "category": "Toy Sports Car"
+    },
+    {
+        "picture": "https://ibb.co/HtwDyRq",
+        "name": "Sports Car 2",
+        "price": "$24.99",
+        "rating": 4.2,
+        "category": "Toy Sports Car"
+    },
+    {
+        "picture": "https://ibb.co/wyF06MD",
+        "name": "Fire Truck 1",
+        "price": "$29.99",
+        "rating": 4.7,
+        "category": "Toy Fire Truck"
+    },
+    {
+        "picture": "https://ibb.co/wyF06MD",
+        "name": "Fire Truck 2",
+        "price": "$34.99",
+        "rating": 4.0,
+        "category": "Toy Fire Truck"
+    },
+    {
+        "picture": "https://ibb.co/PhRL7tH",
+        "name": "Police Car 1",
+        "price": "$22.99",
+        "rating": 4.3,
+        "category": "Toy Police Car"
+    },
+    {
+        "picture": "https://ibb.co/PhRL7tH",
+        "name": "Police Car 2",
+        "price": "$27.99",
+        "rating": 4.6,
+        "category": "Toy Police Car"
+    }
+]
