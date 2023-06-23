@@ -1,13 +1,17 @@
 import React, { useContext } from 'react';
 import img from '../../../src/assets/images.png'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Providers/AuthProviders';
 
 const LogIn = () => {
 
     const { signIn, googleSign } = useContext(AuthContext);
+    
+    const location = useLocation()
     const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogin = event => {
         event.preventDefault();
@@ -28,7 +32,7 @@ const LogIn = () => {
                             'Successfully Logged In!',
                             'success'
                         )
-                        navigate('/');
+                        navigate(from , {replace:true});
                     })
 
             })
