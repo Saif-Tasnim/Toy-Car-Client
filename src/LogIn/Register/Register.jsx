@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import img from '../../../src/assets/images.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
+import { updateProfile } from 'firebase/auth';
+import Swal from 'sweetalert2'
 
 const Register = () => {
+
+    const { createUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSignUp = event => {
         event.preventDefault();
@@ -13,7 +19,35 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(name , photo , email , password);
+        // console.log(name , photo , email , password);
+
+        createUser(email, password)
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+                updateProfile(user, {
+                    displayName: name,
+                    photoURL: photo,
+                })
+                    .then(() => {
+                        Swal.fire(
+                            'Good job!',
+                            'Your Account Successfully created!',
+                            'success'
+                        )
+                        navigate('/');
+                    })
+            })
+            .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${err.message}`,
+
+                })
+            })
+
+        form.reset();
     }
 
     return (
@@ -62,7 +96,7 @@ const Register = () => {
                                 <button className="btn btn-primary">Sign Up </button>
                             </div>
                         </form>
-                   
+
 
                     </div>
                 </div>

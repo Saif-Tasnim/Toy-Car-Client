@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import img from '../../../src/assets/images.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../Providers/AuthProviders';
 
 const LogIn = () => {
+
+    const { signIn, googleSign } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleLogin = event => {
         event.preventDefault();
@@ -11,8 +16,52 @@ const LogIn = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password);
-        // form.reset();
+        signIn(email, password)
+            .then(res => {
+                updateProfile(res.user, {
+                    displayName: res.user.displayName,
+                    photoURL: res.user.photoURL,
+                })
+                    .then(() => {
+                        Swal.fire(
+                            'Logged In!',
+                            'Successfully Logged In!',
+                            'success'
+                        )
+                        navigate('/');
+                    })
+
+            })
+            .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${err.message}`,
+
+                })
+            })
+
+        form.reset();
+    }
+
+    const googleSignIn = () => {
+        googleSign()
+            .then(res => {
+                Swal.fire(
+                    'Logged In!',
+                    'Successfully Logged In!',
+                    'success'
+                )
+                navigate('/');
+            })
+            .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${err.message}`,
+
+                })
+            })
     }
 
     return (
@@ -51,7 +100,7 @@ const LogIn = () => {
                         </form>
                         <div className="divider">OR</div>
                         <div className="form-control mt-2">
-                            <button className="btn btn-primary">Sign In With Google</button>
+                            <button className="btn btn-primary" onClick={googleSignIn}>Sign In With Google</button>
                         </div>
 
                     </div>
