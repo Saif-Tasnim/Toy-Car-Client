@@ -67,7 +67,7 @@ const NavigationPanel = () => {
             </div>
 
             <div className="">
-                <Link to="" className="btn btn-outline"> Log In </Link>
+                <Link to="/login" className="btn btn-outline"> Log In </Link>
             </div>
 
         </div>
