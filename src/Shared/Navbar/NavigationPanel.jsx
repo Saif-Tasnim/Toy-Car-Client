@@ -7,25 +7,25 @@ import Swal from "sweetalert2";
 
 const NavigationPanel = () => {
 
-    const { user , logOut } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const handleLogOut = () => {
         logOut()
-        .then(()=>{
-            Swal.fire(
-                'Logged Out!',
-                'Successfully Logged Out !',
-                'success'
-            )
-        })
-        .catch(err => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: `${err.message}`,
-
+            .then(() => {
+                Swal.fire(
+                    'Logged Out!',
+                    'Successfully Logged Out !',
+                    'success'
+                )
             })
-        })
+            .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${err.message}`,
+
+                })
+            })
     }
 
     const nonUserNav = <div className="flex flex-col gap-4 md:flex-row md:gap-6">
@@ -39,10 +39,10 @@ const NavigationPanel = () => {
 
     const userNav = <div className="flex flex-col gap-4 md:flex-row md:gap-6">
 
-        <li> <Link> Home </Link> </li>
+        <li> <Link to="/"> Home </Link> </li>
         <li> <Link> Blogs </Link> </li>
         <li> <Link> All Toys </Link> </li>
-        <li> <Link> Add A Toy </Link> </li>
+        <li> <Link to='/addToy'> Add A Toy </Link> </li>
         <li> <Link> My Toys </Link> </li>
         <div className="tooltip" data-tip={user?.displayName}>
             <div className="w-12 mr-3">
