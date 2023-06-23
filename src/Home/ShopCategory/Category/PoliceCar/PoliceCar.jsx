@@ -12,6 +12,17 @@ const PoliceCar = () => {
             .then(data => setPolice(data));
     }, [])
 
+    
+    if (police.length > 2) {
+        console.log(car.slice(0, 2));
+        console.log("new Array ize is ", police.length);
+    }
+
+    else {
+        console.log("size is perfect");
+    }
+
+
     return (
 
         <div className='mt-9 grid grid-cols-1 md:grid-cols-2 ml-24'>
