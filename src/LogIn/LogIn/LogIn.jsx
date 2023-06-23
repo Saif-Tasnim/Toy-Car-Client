@@ -1,5 +1,6 @@
 import React from 'react';
 import img from '../../../src/assets/images.png'
+import { Link } from 'react-router-dom';
 
 const LogIn = () => {
 
@@ -40,8 +41,8 @@ const LogIn = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" placeholder="password" className="input input-bordered" name='password' required />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <label className="label ">
+                                    <Link to="/register" className="label-text-alt link link-hover text-blue-700 font-bold">New to Car Mania X ? </Link>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
