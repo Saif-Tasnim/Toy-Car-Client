@@ -19,15 +19,16 @@ const ShopCategory = () => {
                 </TabList>
 
                 <TabPanel>
-                  <ToyCar></ToyCar>
+                    <ToyCar></ToyCar>
                 </TabPanel>
-                
+
                 <TabPanel>
-                  <PoliceCar></PoliceCar>
+                    <FireTruck></FireTruck>
+
                 </TabPanel>
-                
+
                 <TabPanel>
-                  <FireTruck></FireTruck>
+                    <PoliceCar></PoliceCar>
                 </TabPanel>
             </Tabs>
         </div>
