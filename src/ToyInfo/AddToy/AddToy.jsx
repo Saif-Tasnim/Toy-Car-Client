@@ -38,6 +38,8 @@ const AddToy = () => {
                     'success'
                 )
             })
+
+        form.reset();
     }
 
     return (
@@ -74,7 +76,7 @@ const AddToy = () => {
                             <input type="text"
                                 className="input input-bordered"
                                 name='seller_name'
-                                value={user?.displayName}
+                                defaultValue={user?.displayName}
                                 readOnly
                             />
                         </div>
@@ -85,7 +87,7 @@ const AddToy = () => {
                             <input type="text"
                                 className="input input-bordered"
                                 name='seller_email'
-                                value={user?.email}
+                                defaultValue={user?.email}
                             />
 
                         </div>

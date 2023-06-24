@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import TableFormat from './TableFormat';
+import { Rating } from '@smastrom/react-rating';
+
 
 const AllToy = () => {
 
     const [data, setData] = useState([])
+    const [modalData, setModalData] = useState(null);
+    const modalRef = useRef(null);
+
 
     useEffect(() => {
         fetch('http://localhost:5000/toyDetails')
@@ -10,6 +16,17 @@ const AllToy = () => {
             .then(datum => setData(datum));
     }, [])
 
+    const handleDetails = id => {
+        fetch(`http://localhost:5000/toyDetails/${id}`)
+            .then(res => res.json())
+            .then(data => setModalData(data))
+            .then(() => {
+                if (modalRef.current) {
+                    modalRef.current.showModal();
+                }
+            })
+            .catch(error => console.log(error));
+    };
 
     return (
         <div className='mt-20'>
@@ -35,49 +52,53 @@ const AllToy = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            data.map(d => <tr>
-                                <th>
-                                    <label>
-                                        <button className="btn btn-circle">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                                        </button>
-                                    </label>
-
-                                </th>
-                                <td>
-                                    <div className="flex items-center space-x-3"> <div> {d.seller_name}</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="flex items-center space-x-3"> <div> {d.name}</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="flex items-center space-x-3"> <div> {d.category}</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="flex items-center space-x-3 "> <div> {d.price}</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="flex items-center space-x-3 ml-8"> <div> {d.quantity}</div>
-                                    </div>
-                                </td>
-                                <th>
-                                    <button className="btn btn-primary btn-sm  text-center">View Details</button>
-                                </th>
-                            </tr>)
+                            data.map(d => <TableFormat
+                                key={d._id}
+                                d={d}
+                                handleDetails={handleDetails}
+                            ></TableFormat>)
                         }
-
-
-
                     </tbody>
-
 
                 </table>
             </div>
-        </div>
+
+            {
+                modalData &&
+
+                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle" ref={modalRef}>
+                    <form method="dialog" className="modal-box">
+                        <h3 className="font-bold text-lg text-center text-red-700">{modalData.name}</h3>
+
+                        <div>
+                            <p className="py-4"> Seller Name :  {modalData.seller_name}</p>
+                            <p className="py-4"> Seller Email :  {modalData.seller_email}</p>
+                            <p className="py-4"> Toy Sub Category :  {modalData.category}</p>
+                            <p className="py-4"> Toy Price:  {modalData.price}</p>
+                            <p className="py-4"> Available Quantity:  {modalData.quantity}</p>
+                            <div>  <p className="py-4 flex gap-3"> Toy Rating:  <Rating
+                                style={{ maxWidth: 120 }}
+                                value={modalData.rating}
+                                readOnly
+                            /> </p></div>
+
+                            <p className="py-4"> Toy Details:  {modalData.details}</p>
+                            <img src={modalData.photo} alt="" />
+
+                        </div>
+
+                        <div className="modal-action">
+                            <button className="btn" >
+                                Close
+                            </button>
+                        </div>
+                    </form>
+                </dialog>
+
+
+            }
+
+        </div >
     );
 };
 

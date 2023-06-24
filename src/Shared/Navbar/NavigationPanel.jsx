@@ -28,7 +28,7 @@ const NavigationPanel = () => {
             })
     }
 
-    const nonUserNav = <div className="flex flex-col gap-4 md:flex-row md:gap-6">
+    const nonUserNav = <div className="flex flex-col gap-4 md:flex-row md:gap-3">
         <li> <Link> Home </Link> </li>
         <li> <Link> Gallery </Link> </li>
         <li> <Link> Blogs </Link> </li>
@@ -37,7 +37,7 @@ const NavigationPanel = () => {
 
     </div>
 
-    const userNav = <div className="flex flex-col gap-4 md:flex-row md:gap-6">
+    const userNav = <div className="flex flex-col gap-4 md:flex-row md:gap-2">
 
         <li> <Link to="/"> Home </Link> </li>
         <li> <Link> Blogs </Link> </li>
@@ -45,7 +45,7 @@ const NavigationPanel = () => {
         <li> <Link to='/addToy'> Add A Toy </Link> </li>
         <li> <Link> My Toys </Link> </li>
         <div className="tooltip" data-tip={user?.displayName}>
-            <div className="w-12 mr-3">
+            <div className="w-12 mr-2">
                 <img src={user?.photoURL} className="rounded-md" />
             </div>
         </div>
@@ -54,7 +54,7 @@ const NavigationPanel = () => {
 
     return (
 
-        <div className="w-full md:w-[1140px] md:mx-auto bg-base-100 flex justify-between md:justify-around items-center p-2 md:p-4">
+        <div className="w-full md:w-[1140px] md:mx-auto bg-base-200 flex justify-between md:justify-around items-center p-2 md:p-4">
 
             <div className="md:navbar-start">
 
@@ -84,7 +84,7 @@ const NavigationPanel = () => {
             </div>
 
             <div className=" hidden lg:flex mt-7">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal">
                     {
                         user ?
                             userNav :
