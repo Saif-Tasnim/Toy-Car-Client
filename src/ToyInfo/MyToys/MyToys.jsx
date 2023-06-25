@@ -81,9 +81,10 @@ const MyToys = () => {
                                     </button>
                                 </th>
                                 <td>{d.seller_name}</td>
-                                <td>{d.seller_email}</td>
+                                <td>{d.name}</td>
                                 <td>{d.category}</td>
                                 <td>{d.price}</td>
+                                <td>{d.quantity}</td>
                                 <td>
                                     <button className="btn btn-primary btn-md">Update</button>
                                 </td>
