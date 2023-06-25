@@ -43,7 +43,7 @@ const NavigationPanel = () => {
         <li> <Link> Blogs </Link> </li>
         <li> <Link to='/allToys'> All Toys </Link> </li>
         <li> <Link to='/addToy'> Add A Toy </Link> </li>
-        <li> <Link> My Toys </Link> </li>
+        <li> <Link to='/myToys'> My Toys </Link> </li>
         <div className="tooltip" data-tip={user?.displayName}>
             <div className="w-12 mr-2">
                 <img src={user?.photoURL} className="rounded-md" />

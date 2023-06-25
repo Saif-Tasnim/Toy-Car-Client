@@ -5,7 +5,7 @@ import { HiOutlineMail } from "react-icons/hi";
 
 const Footer = () => {
     return (
-        <div className='mt-28'>
+        <div className='mt-28 overflow-hidden'>
             <footer className="footer p-10 bg-slate-800 text-white">
                 <div>
                     <img src={img} alt="" />
