@@ -30,7 +30,9 @@ const AllToy = () => {
 
     return (
         <div className='mt-20'>
-            <h1 className='text-4xl font-bold text-emerald-400 text-center mb-16'> List Of All Toys </h1>
+            <h1 className='text-4xl font-bold text-emerald-400 text-center mb-6'> List Of All Toys </h1>
+
+            <h4 className='text-xl text-blue-500 text-center mb-16'>Total data : {data.length}</h4>
 
             {/* table data */}
             <div className="overflow-x-auto">

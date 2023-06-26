@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { Link } from 'react-router-dom';
 
 const FireTruck = () => {
 
@@ -32,7 +33,7 @@ const FireTruck = () => {
                                     readOnly
                                 />
                                 <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">View Details </button>
+                                    <Link to={`/visitDetails/${t._id}`}><button className="btn btn-primary">View Details </button></Link>
                                 </div>
                             </div>
                         </div>

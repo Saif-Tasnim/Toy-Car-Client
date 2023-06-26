@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { Link } from 'react-router-dom';
 
 const ToyCar = () => {
 
@@ -31,8 +32,8 @@ const ToyCar = () => {
                                     value={c.rating}
                                     readOnly
                                 />
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">View Details </button>
+                                 <div className="card-actions justify-end">
+                                    <Link to={`/visitDetails/${c._id}`}><button className="btn btn-primary">View Details </button></Link>
                                 </div>
                             </div>
                         </div>
