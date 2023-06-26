@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import TableFormat from './TableFormat';
 import { Rating } from '@smastrom/react-rating';
 import { Link } from 'react-router-dom';
+import useTitle from '../../Hook/useTitle';
 
 
 const AllToy = () => {
@@ -11,9 +12,10 @@ const AllToy = () => {
     const modalRef = useRef(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredToys, setFilteredToys] = useState([]);
+    useTitle("All Toy")
 
     useEffect(() => {
-        fetch('http://localhost:5000/toyDetails')
+        fetch('https://toy-car-server-chi.vercel.app/toyDetails')
             .then(res => res.json())
             .then(datum => setData(datum));
     }, [])
@@ -27,7 +29,7 @@ const AllToy = () => {
 
 
     const handleDetails = id => {
-        fetch(`http://localhost:5000/toyDetails/${id}`)
+        fetch(`https://toy-car-server-chi.vercel.app/toyDetails/${id}`)
             .then(res => res.json())
             .then(data => setModalData(data))
             .then(() => {

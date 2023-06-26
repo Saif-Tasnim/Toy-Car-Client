@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
+import useTitle from '../../Hook/useTitle';
 
 const MyToys = () => {
     const { user, loading } = useContext(AuthContext);
     const [data, setData] = useState([]);
     const [modalData, setModalData] = useState([]);
     const modalRef = useRef(null);
+    useTitle("My Toys")
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myToys?email=${user.email}`)
+        fetch(`https://toy-car-server-chi.vercel.app/myToys?email=${user.email}`)
             .then(res => res.json())
             .then(d => setData(d));
     }, []);
@@ -27,7 +29,7 @@ const MyToys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/myToys/${id}`, {
+                fetch(`https://toy-car-server-chi.vercel.app/myToys/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -48,7 +50,7 @@ const MyToys = () => {
     };
 
     const handleUpdateButton = id => {
-        fetch(`http://localhost:5000/toyDetails/${id}`)
+        fetch(`https://toy-car-server-chi.vercel.app/toyDetails/${id}`)
             .then(res => res.json())
             .then(data => setModalData(data))
             .then(() => {
@@ -76,7 +78,7 @@ const MyToys = () => {
         const updateOb = { quantity, price, details };
 
 
-        fetch(`http://localhost:5000/myToys/${id}`, {
+        fetch(`https://toy-car-server-chi.vercel.app/myToys/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': "application/json",

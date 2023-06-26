@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
+import useTitle from '../../Hook/useTitle';
 
 const AddToy = () => {
 
     const { user } = useContext(AuthContext);
+    useTitle("Add Toy");
 
     const submitDetails = event => {
         event.preventDefault();
@@ -23,7 +25,7 @@ const AddToy = () => {
 
         const dataOb = { photo, name, seller_name, seller_email, category, price, rating, quantity, details }
 
-        fetch('http://localhost:5000/toyDetails', {
+        fetch('https://toy-car-server-chi.vercel.app/toyDetails', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

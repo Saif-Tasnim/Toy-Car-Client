@@ -3,13 +3,15 @@ import img from '../../../src/assets/images.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { updateProfile } from 'firebase/auth';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import useTitle from '../../Hook/useTitle';
 
 const Register = () => {
 
     const { createUser } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate();
+    useTitle("Register")
 
     const from = location.state?.from?.pathname || "/register";
 

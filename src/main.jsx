@@ -18,6 +18,7 @@ import MyToys from './ToyInfo/MyToys/MyToys';
 import ErrorPage from './ErrorPage/ErrorPage';
 import Blogs from './Home/Blogs/Blogs';
 import VisitToyDetails from './Home/VisitToyDetails/VisitToyDetails';
+import 'sweetalert2/dist/sweetalert2.css';
 
 const router = createBrowserRouter([
   {
@@ -52,11 +53,11 @@ const router = createBrowserRouter([
         path: "blogs",
         element: <Blogs></Blogs>
       },
- 
+
       {
         path: "visitDetails/:id",
         element: <PrivateRoute> <VisitToyDetails></VisitToyDetails> </PrivateRoute>,
-        loader : ({params}) => fetch(`http://localhost:5000/toyDetails/${params.id}`)
+        loader: ({ params }) => fetch(`https://toy-car-server-chi.vercel.app/toyDetails/${params.id}`)
       }
     ],
     errorElement: <ErrorPage></ErrorPage>

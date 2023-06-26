@@ -6,7 +6,7 @@ import { HiOutlineMail } from "react-icons/hi";
 const Footer = () => {
     return (
         <div className='mt-28'>
-            <footer className="footer p-10 bg-slate-800 text-white">
+            <footer className="footer p-10 bg-slate-800 text-white -mb-6">
                 <div>
                     <img src={img} alt="" />
                     <h1 className='text-3xl font-bold text-center pl-16'>Car Mania X </h1>

@@ -3,6 +3,8 @@ import img from '../../../src/assets/images.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Providers/AuthProviders';
+import useTitle from '../../Hook/useTitle';
+import { updateProfile } from 'firebase/auth';
 
 const LogIn = () => {
 
@@ -10,6 +12,7 @@ const LogIn = () => {
     
     const location = useLocation()
     const navigate = useNavigate();
+    useTitle("Login")
 
     const from = location.state?.from?.pathname || "/";
 
@@ -56,7 +59,7 @@ const LogIn = () => {
                     'Successfully Logged In!',
                     'success'
                 )
-                navigate('/');
+                navigate(from , {replace:true});
             })
             .catch(err => {
                 Swal.fire({

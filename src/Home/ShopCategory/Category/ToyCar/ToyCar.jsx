@@ -8,7 +8,7 @@ const ToyCar = () => {
     const [car, setCar] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/carData?category=Toy%20Sports%20Car')
+        fetch('https://toy-car-server-chi.vercel.app/carData?category=Toy%20Sports%20Car')
             .then(res => res.json())
             .then(data => setCar(data));
     }, [])
@@ -16,12 +16,12 @@ const ToyCar = () => {
     if (car.length > 2) {
         setCar(car.slice(0, 2));
     }
-    
+
     return (
-        <div className='mt-9 grid grid-cols-1 md:grid-cols-2 ml-20'>
+        <div className='mt-9 grid grid-cols-1 md:grid-cols-2 md:ml-20'>
             {
                 car.map(c => <>
-                    <div className="card w-96 bg-base-100 shadow-xl">
+                    <div className='mt-9 grid grid-cols-1 gap-7 md:grid-cols-2 md:ml-20 md:gap-0'>
                         <figure><img src={c.photo} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title"> {c.name} </h2>
@@ -32,7 +32,7 @@ const ToyCar = () => {
                                     value={c.rating}
                                     readOnly
                                 />
-                                 <div className="card-actions justify-end">
+                                <div className="card-actions justify-end">
                                     <Link to={`/visitDetails/${c._id}`}><button className="btn btn-primary">View Details </button></Link>
                                 </div>
                             </div>

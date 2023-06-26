@@ -7,18 +7,18 @@ const FireTruck = () => {
 
     const [truck, setTruck] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/carData?category=Toy%20Fire%20Truck')
+        fetch('https://toy-car-server-chi.vercel.app/carData?category=Toy%20Fire%20Truck')
             .then(res => res.json())
             .then(data => setTruck(data));
     }, [])
 
     if (truck.length > 2) {
-       setTruck(truck.slice(0,2));
+        setTruck(truck.slice(0, 2));
     }
 
 
     return (
-        <div className='mt-9 grid grid-cols-1 md:grid-cols-2 ml-24'>
+        <div className='mt-9 grid grid-cols-1 gap-7 md:grid-cols-2 md:ml-20 md:gap-0'>
             {
                 truck.map(t => <>
                     <div className="card w-96 bg-base-100 shadow-xl">

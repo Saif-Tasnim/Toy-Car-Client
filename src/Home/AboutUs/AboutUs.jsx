@@ -1,10 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const AboutUs = () => {
+
+    useEffect(() => {
+        AOS.init({
+            disable: false, 
+            startEvent: 'DOMContentLoaded',
+            initClassName: 'aos-init', 
+            animatedClassName: 'aos-animate', 
+            useClassNames: false, 
+            disableMutationObserver: false, 
+            debounceDelay: 50, 
+            throttleDelay: 99, 
+
+
+            // offset: 120,
+            // delay: 0,
+            // duration: 4000,
+            // easing: 'ease',
+            // once: false,
+            // mirror: false,
+            // anchorPlacement: 'top-bottom'
+
+        });
+    }, []);
+
+
     return (
-        <div className='w-full md:w-[1140px] md: mx-auto'>
+        <div className='w-full md:w-[1140px] md:mx-auto'   data-aos="fade-up"
+        data-aos-offset="200"
+        data-aos-delay="0"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+        data-aos-mirror="true"
+        data-aos-once="false"
+        data-aos-anchor-placement="top-center">
+
             <h1 className='text-center text-3xl font-bold mt-20'>About Us </h1>
-            
+
             <p className='text-center mb-20 mt-6'>Welcome to our toy car website! At Car Mania X, we are passionate about bringing joy and excitement to children and toy car enthusiasts of all ages. With years of experience in the industry, we have established ourselves as a trusted destination for high-quality and captivating toy cars.
 
                 At the core of our business is a commitment to delivering an exceptional customer experience. We take pride in curating a wide selection of toy cars, including sports cars, fire trucks, police cars, and more, sourced from renowned manufacturers known for their attention to detail and craftsmanship.

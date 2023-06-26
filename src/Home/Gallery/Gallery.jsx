@@ -8,9 +8,48 @@ import img7 from '../../assets/Gallery Pic/policewoman-police-police-car-figure.
 import img8 from '../../assets/Gallery Pic/toy-fire-truck-260nw-676363618.webp';
 
 
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 const Gallery = () => {
+
+    useEffect(() => {
+        AOS.init({
+            disable: false,
+            startEvent: 'DOMContentLoaded',
+            initClassName: 'aos-init',
+            animatedClassName: 'aos-animate',
+            useClassNames: false,
+            disableMutationObserver: false,
+            debounceDelay: 50,
+            throttleDelay: 99,
+
+
+            // offset: 120,
+            // delay: 0,
+            // duration: 4000,
+            // easing: 'ease',
+            // once: false,
+            // mirror: false,
+            // anchorPlacement: 'top-bottom'
+
+        });
+    }, []);
+
+
     return (
-        <div className='w-full md:w-[1140px] md: mx-auto' >
+        <div className='w-full md:w-[1140px] md: mx-auto'
+            data-aos="fade-left"
+            data-aos-offset="200"
+            data-aos-delay="0"
+            data-aos-duration="3000"
+            data-aos-easing="ease-in"
+            data-aos-mirror="true"
+            data-aos-once="false"
+            data-aos-anchor-placement="top-center"
+        >
             <h2 className='text-center text-3xl font-bold'> Our Collections </h2>
 
 

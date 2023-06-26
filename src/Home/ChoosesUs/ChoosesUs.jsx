@@ -1,6 +1,6 @@
-import React from 'react';
 
 const ChoosesUs = () => {
+
     return (
         <div className='w-full md:w-[1140px] md: mx-auto mt-32 mb-20'>
             <h1 className='text-center text-3xl font-bold mt-20'> Why You Choose Us </h1>
