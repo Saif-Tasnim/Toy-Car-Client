@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-
 import {
   createBrowserRouter,
   RouterProvider,
@@ -53,6 +52,7 @@ const router = createBrowserRouter([
         path: "blogs",
         element: <Blogs></Blogs>
       },
+ 
       {
         path: "visitDetails/:id",
         element: <PrivateRoute> <VisitToyDetails></VisitToyDetails> </PrivateRoute>,

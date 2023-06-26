@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import TableFormat from './TableFormat';
 import { Rating } from '@smastrom/react-rating';
+import { Link } from 'react-router-dom';
 
 
 const AllToy = () => {
@@ -8,13 +9,22 @@ const AllToy = () => {
     const [data, setData] = useState([])
     const [modalData, setModalData] = useState(null);
     const modalRef = useRef(null);
-
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredToys, setFilteredToys] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5000/toyDetails')
             .then(res => res.json())
             .then(datum => setData(datum));
     }, [])
+
+    useEffect(() => {
+        const filteredResults = data.filter((toy) =>
+            toy.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredToys(filteredResults);
+    }, [searchQuery, data]);
+
 
     const handleDetails = id => {
         fetch(`http://localhost:5000/toyDetails/${id}`)
@@ -28,11 +38,20 @@ const AllToy = () => {
             .catch(error => console.log(error));
     };
 
+
+
+
     return (
         <div className='mt-20'>
             <h1 className='text-4xl font-bold text-emerald-400 text-center mb-6'> List Of All Toys </h1>
 
             <h4 className='text-xl text-blue-500 text-center mb-16'>Total data : {data.length}</h4>
+
+            {/* search features  */}
+            <div className='ml-20 mb-16'>
+                <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className='w-1/4 h-[40px] p-3' placeholder='Search Through Toy Name' />
+
+            </div>
 
             {/* table data */}
             <div className="overflow-x-auto">
@@ -54,11 +73,20 @@ const AllToy = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            data.map(d => <TableFormat
-                                key={d._id}
-                                d={d}
-                                handleDetails={handleDetails}
-                            ></TableFormat>)
+                            filteredToys.length > 0 ?
+                                filteredToys.map(d => (
+                                    <TableFormat
+                                        key={d._id}
+                                        d={d}
+                                        handleDetails={handleDetails}
+                                    />
+                                ))
+
+                                : data.map(d => <TableFormat
+                                    key={d._id}
+                                    d={d}
+                                    handleDetails={handleDetails}
+                                ></TableFormat>)
                         }
                     </tbody>
 
