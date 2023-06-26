@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import img from '../../../src/assets/images.png'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2'
@@ -8,7 +8,10 @@ import Swal from 'sweetalert2'
 const Register = () => {
 
     const { createUser } = useContext(AuthContext);
+    const location = useLocation()
     const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || "/register";
 
     const handleSignUp = event => {
         event.preventDefault();
@@ -35,7 +38,8 @@ const Register = () => {
                             'Your Account Successfully created!',
                             'success'
                         )
-                        navigate('/');
+                        navigate(from , {replace: true})
+                      
                     })
             })
             .catch(err => {

@@ -1,10 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
 import Swal from 'sweetalert2';
 
 const MyToys = () => {
     const { user, loading } = useContext(AuthContext);
     const [data, setData] = useState([]);
+    const [modalData, setModalData] = useState([]);
+    const modalRef = useRef(null);
 
     useEffect(() => {
         fetch(`http://localhost:5000/myToys?email=${user.email}`)
@@ -45,11 +47,63 @@ const MyToys = () => {
         });
     };
 
+    const handleUpdateButton = id => {
+        fetch(`http://localhost:5000/toyDetails/${id}`)
+            .then(res => res.json())
+            .then(data => setModalData(data))
+            .then(() => {
+                if (modalRef.current) {
+                    modalRef.current.showModal();
+                }
+            })
+            .catch(error => console.log(error));
+    }
+
 
     if (data.length === 0) {
         return <div className='flex justify-center mt-24 mb-32'>
             <h1 className='text-4xl font-bold text-red-800'>No Data Found For You !!! </h1>
         </div>
+    }
+
+    const handleSubmit = (id) => {
+
+        const form = event.target;
+        const quantity = form.quantity.value;
+        const price = form.price.value;
+        const details = form.details.value;
+
+        const updateOb = { quantity, price, details };
+
+
+        fetch(`http://localhost:5000/myToys/${id}`, {
+            method: "PATCH",
+            headers: {
+                'content-type': "application/json",
+            },
+            body: JSON.stringify(updateOb),
+        })
+            .then(res => res.json())
+            .then(datum => {
+                if (datum.modifiedCount > 0) {
+                    Swal.fire(
+                        'Good Job!',
+                        'Data successfully updated.',
+                        'success'
+                    )
+
+                    const restData = data.filter(d => d._id !== id);
+                    const updateData = data.find(d => d._id === id);
+
+                    updateData.price = price;
+                    updateData.quantity = quantity;
+                    updateData.details = details
+
+                    const newArray = [updateData, ...restData];
+                    setData(newArray);
+
+                }
+            })
     }
 
 
@@ -86,7 +140,7 @@ const MyToys = () => {
                                 <td>{d.price}</td>
                                 <td>{d.quantity}</td>
                                 <td>
-                                    <button className="btn btn-primary btn-md">Update</button>
+                                    <button className="btn btn-primary btn-md" onClick={() => handleUpdateButton(d._id)}>Update</button>
                                 </td>
                             </tr>
                         ))
@@ -94,6 +148,69 @@ const MyToys = () => {
                     }
                 </tbody>
             </table>
+
+            {
+                modalData &&
+
+                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle" ref={modalRef}>
+                    <form method="dialog" className="modal-box" onSubmit={() => handleSubmit(modalData._id)}>
+                        <h3 className="font-bold text-lg text-center text-red-700">{modalData.name}</h3>
+
+                        <div className="card-body">
+
+                            {/* 3rd row */}
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-7'>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Available Quantity
+                                        </span>
+                                    </label>
+                                    <input type="text" placeholder="Available Quantity" className="input input-bordered"
+                                        name='quantity'
+                                    />
+
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text"> Price </span>
+                                    </label>
+                                    <input type="text" placeholder="Price" className="input input-bordered"
+                                        name='price'
+
+                                    />
+
+                                </div>
+                            </div>
+
+
+
+                            {/* text area */}
+                            <div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text"> Detail description </span>
+                                    </label>
+                                    <input type='text' placeholder="Details About Toy Car .... " className="input input-bordered w-full h-[100px]"
+                                        name='details'
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="modal-action">
+                                <button className="btn btn-primary">
+                                    Update
+                                </button>
+
+
+                            </div>
+                        </div>
+                    </form>
+
+                </dialog>
+
+
+            }
+
         </div>
     );
 };
