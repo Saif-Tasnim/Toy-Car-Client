@@ -29,9 +29,9 @@ const NavigationPanel = () => {
     }
 
     const nonUserNav = <div className="flex flex-col gap-4 md:flex-row md:gap-3">
-        <li> <Link> Home </Link> </li>
-        <li> <Link> Gallery </Link> </li>
-        <li> <Link> Blogs </Link> </li>
+        <li> <Link to="/"> Home </Link> </li>
+        <li> <Link to="/"> Gallery </Link> </li>
+        <li> <Link to="/blogs"> Blogs </Link> </li>
         <li> <Link to='/allToys'> All Toys </Link> </li>
 
 
@@ -40,7 +40,7 @@ const NavigationPanel = () => {
     const userNav = <div className="flex flex-col gap-4 md:flex-row md:gap-2">
 
         <li> <Link to="/"> Home </Link> </li>
-        <li> <Link> Blogs </Link> </li>
+        <li> <Link to="/blogs"> Blogs </Link> </li>
         <li> <Link to='/allToys'> All Toys </Link> </li>
         <li> <Link to='/addToy'> Add A Toy </Link> </li>
         <li> <Link to='/myToys'> My Toys </Link> </li>

@@ -12,12 +12,7 @@ const FireTruck = () => {
     }, [])
 
     if (truck.length > 2) {
-        console.log(car.slice(0, 2));
-        console.log("new Array ize is ", truck.length);
-    }
-
-    else {
-        console.log("size is perfect");
+       setTruck(truck.slice(0,2));
     }
 
 
@@ -26,7 +21,7 @@ const FireTruck = () => {
             {
                 truck.map(t => <>
                     <div className="card w-96 bg-base-100 shadow-xl">
-                        <figure><img src={t.picture} alt="Shoes" /></figure>
+                        <figure><img src={t.photo} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title"> {t.name} </h2>
                             <p className='mt-3'>Price : {t.price} </p>

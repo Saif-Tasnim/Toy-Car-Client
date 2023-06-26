@@ -14,14 +14,8 @@ const PoliceCar = () => {
 
     
     if (police.length > 2) {
-        console.log(car.slice(0, 2));
-        console.log("new Array ize is ", police.length);
-    }
-
-    else {
-        console.log("size is perfect");
-    }
-
+        setPolice(police.slice(0,2));
+     }
 
     return (
 
@@ -29,7 +23,7 @@ const PoliceCar = () => {
             {
                 police.map(p => <>
                     <div className="card w-96 bg-base-100 shadow-xl">
-                        <figure><img src={p.picture} alt="Shoes" /></figure>
+                        <figure><img src={p.photo} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title"> {p.name} </h2>
                             <p className='mt-3'>Price : {p.price} </p>
